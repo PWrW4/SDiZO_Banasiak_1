@@ -112,6 +112,24 @@ void DoublyLinkedList::addAtPos(int data_to_add, int _pos)
 	newElement->prev = tmp;
 }
 
+void DoublyLinkedList::rmStart()
+{
+	head_list = head_list->next;
+	delete head_list->prev;
+}
+
+void DoublyLinkedList::rmEnd()
+{
+}
+
+void DoublyLinkedList::rmAfter()
+{
+}
+
+void DoublyLinkedList::rmAtPos()
+{
+}
+
 void DoublyLinkedList::display()
 {
 	std::cout << "Elementy listy dwustronnej: "<< std::endl;

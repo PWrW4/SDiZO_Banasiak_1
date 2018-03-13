@@ -13,6 +13,11 @@ public:
 	void addAfter(int data_to_add, int after_value);
 	void addAtPos(int data_to_add, int _pos);
 
+	void rmStart();
+	void rmEnd();
+	void rmAfter();
+	void rmAtPos();
+
 	void display();
 
 	int count();
