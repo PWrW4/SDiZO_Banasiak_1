@@ -10,13 +10,11 @@ public:
 
 	void addStart(int data_to_add);
 	void addEnd(int data_to_add);
-	void addAfter(int data_to_add, int after_value);
-	void addAtPos(int data_to_add, int _pos);
+	void addAtPos(int data_to_add, int pos);
 
 	void rmStart();
 	void rmEnd();
-	void rmAfter();
-	void rmAtPos();
+	void rmAtPos(int pos);
 
 	void display();
 
