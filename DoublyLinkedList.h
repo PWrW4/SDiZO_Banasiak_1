@@ -1,22 +1,25 @@
 ﻿#pragma once
-#include "Node.h"
+#include "Node_DoublyLinkedList.h"
 
-class DoublyLinkedList : Node
+class DoublyLinkedList
 {
 public:
-	DoublyLinkedList * next;
-	DoublyLinkedList * prev;
+	Node_DoublyLinkedList * head_list;
 
 
 
-	void add_start(DoublyLinkedList ** head,int data_to_add);
-	void add_end(DoublyLinkedList * head, int data_to_add);
-	void add_after(DoublyLinkedList * head, int data_to_add, int after_pos);
+	void addStart(int data_to_add);
+	void addEnd(int data_to_add);
+	void addAfter(int data_to_add, int after_value);
+	void addAtPos(int data_to_add, int _pos);
 
 	void display();
-	int count();
 
-	DoublyLinkedList(int _data);
+	int count();
+	void countAndDisplay();
+
+	DoublyLinkedList();
+	~DoublyLinkedList();
 
 
 };
