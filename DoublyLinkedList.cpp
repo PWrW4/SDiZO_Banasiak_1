@@ -75,6 +75,43 @@ void DoublyLinkedList::addAfter(int data_to_add, int after_value)
 	newElement->prev = tmp;
 }
 
+void DoublyLinkedList::addAtPos(int data_to_add, int _pos)
+{
+	if (_pos<=0)
+	{
+		addStart(data_to_add);
+		return;
+	}
+
+	Node_DoublyLinkedList * newElement = new Node_DoublyLinkedList(data_to_add);
+
+	//jeśli lista pusta to dodaj element
+	if (head_list == nullptr)
+	{
+		head_list = newElement;
+		return;
+	}
+
+	Node_DoublyLinkedList * tmp = head_list;
+
+	while (tmp->next!=nullptr)
+	{
+		if (_pos == 0)
+		{
+			newElement->prev = tmp->prev;
+			newElement->next = tmp;
+			tmp->prev->next = newElement;
+			return;
+		}
+		tmp = tmp->next;
+		_pos--;
+	}
+
+	//Jeśli index za duży, to dodaj na koniec
+	tmp->next = newElement;
+	newElement->prev = tmp;
+}
+
 void DoublyLinkedList::display()
 {
 	std::cout << "Elementy listy dwustronnej: "<< std::endl;
