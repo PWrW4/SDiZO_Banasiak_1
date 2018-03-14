@@ -125,6 +125,25 @@ void DynArray::rmAtPos(int pos)
 	array = tmp;
 }
 
+void DynArray::swapByPos(int left, int right)
+{
+	if (left>size - 1 || right>size - 1)
+	{
+		std::cout << "Error1 while swaping." << std::endl;
+		return;
+	}
+
+	if (left<0 || right<0)
+	{
+		std::cout << "Error2 while swaping." <<std::endl;
+		return;
+	}
+
+	int tmp = array[left];
+	array[left] = array[right];
+	array[right] = tmp;
+}
+
 int DynArray::searchRetunIndex(int data_to_find)
 {
 	if (array == nullptr)

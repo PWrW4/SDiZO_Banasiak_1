@@ -15,15 +15,18 @@ public:
 	void rmEnd();
 	void rmAtPos(int pos);
 
-	int searchRetunIndex(int data_to_find);
-	void searchPrintIndex(int data_to_find);
-	int * searchRetunPointer(int data_to_find);
+	void swapByPos(int left, int right);
 
-	void display();
-	int count();
-	void countAndDisplay();
+	virtual  int searchRetunIndex(int data_to_find);
+	virtual void searchPrintIndex(int data_to_find);
+	virtual int * searchRetunPointer(int data_to_find);
+
+	virtual void display();
+	virtual int count();
+	virtual void countAndDisplay();
 
 	DynArray();
 	~DynArray();
-};
+	 
+ };
 
