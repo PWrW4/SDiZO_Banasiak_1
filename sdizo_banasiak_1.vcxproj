@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DynArray.h" />
+    <ClInclude Include="KopiecMax.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Node_DoublyLinkedList.h" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DynArray.cpp" />
+    <ClCompile Include="KopiecMax.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="Node_DoublyLinkedList.cpp" />

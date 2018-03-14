@@ -1,10 +1,11 @@
 #pragma once
-class DynArray
+ class DynArray
 {
 public:
 
 	int * array = nullptr;
 	int size;
+
 
 	void addStart(int data_to_add);
 	void addEnd(int data_to_add);
@@ -19,7 +20,6 @@ public:
 	int * searchRetunPointer(int data_to_find);
 
 	void display();
-
 	int count();
 	void countAndDisplay();
 

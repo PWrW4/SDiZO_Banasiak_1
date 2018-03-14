@@ -30,6 +30,9 @@
     <ClInclude Include="Node_DoublyLinkedList.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="KopiecMax.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
     <ClInclude Include="DynArray.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
@@ -48,6 +51,9 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Node_DoublyLinkedList.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="KopiecMax.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="DynArray.cpp">
