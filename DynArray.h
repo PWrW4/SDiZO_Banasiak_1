@@ -14,6 +14,10 @@ public:
 	void rmEnd();
 	void rmAtPos(int pos);
 
+	int searchRetunIndex(int data_to_find);
+	void searchPrintIndex(int data_to_find);
+	int * searchRetunPointer(int data_to_find);
+
 	void display();
 
 	int count();

@@ -146,6 +146,99 @@ void DoublyLinkedList::rmAtPos(int pos)
 	delete tmp;
 }
 
+int DoublyLinkedList::searchRetunPos(int data_to_find)
+{
+	//jeśli lista pusta to nic nie rób
+	if (head_list == nullptr)
+	{
+		return -1;
+	}
+
+	int pos = 0;
+	Node_DoublyLinkedList * tmp = head_list;
+
+	if (tmp->data == data_to_find)
+	{
+		return pos;
+	}
+
+	while (tmp->next != nullptr)
+	{
+		pos++;
+		if (tmp->next->data == data_to_find)
+		{
+			return pos;
+		}
+		tmp = tmp->next;
+	}
+
+
+
+	return 999999999;
+}
+
+void DoublyLinkedList::searchPrintPos(int data_to_find)
+{
+	//jeśli lista pusta to nic nie rób
+	if (head_list == nullptr)
+	{
+		std::cout << "Lista jest pusta"<<std::endl;
+	}
+
+	int pos = 0;
+	Node_DoublyLinkedList * tmp = head_list;
+
+	if (tmp->data == data_to_find)
+	{
+		std::cout << "Pozycja szukanej liczby " << pos << std::endl;
+		return;
+	}
+
+	while (tmp->next != nullptr)
+	{
+		pos++;
+		if (tmp->next->data == data_to_find)
+		{
+			std::cout << "Pozycja szukanej liczby " << pos << std::endl;
+			return;
+		}
+		tmp = tmp->next;
+
+	}
+	
+	std::cout << "Nie znalezione elementu w liscie."<<std::endl;
+}
+
+Node_DoublyLinkedList* DoublyLinkedList::searchRetunPointer(int data_to_find)
+{
+	//jeśli lista pusta to nic nie rób
+	if (head_list == nullptr)
+	{
+		return nullptr;
+	}
+
+	int pos = 0;
+	Node_DoublyLinkedList * tmp = head_list;
+
+	if (tmp->data == data_to_find)
+	{
+		return tmp;
+	}
+
+	while (tmp->next != nullptr)
+	{
+		pos++;
+		if (tmp->next->data == data_to_find)
+		{
+			return tmp->next;
+		}
+		tmp = tmp->next;
+
+	}
+
+	return nullptr;
+}
+
 void DoublyLinkedList::display()
 {
 	std::cout << "Elementy listy dwustronnej: "<< std::endl;
@@ -171,7 +264,7 @@ int DoublyLinkedList::count()
 	return i;
 }
 
-void DoublyLinkedList::countAndDisplay()
+void DoublyLinkedList::countAndShow()
 {
 	int i = 0;
 	Node_DoublyLinkedList * tmp = head_list;

@@ -125,6 +125,63 @@ void DynArray::rmAtPos(int pos)
 	array = tmp;
 }
 
+int DynArray::searchRetunIndex(int data_to_find)
+{
+	if (array == nullptr)
+	{
+		return -1;
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		if (array[i] == data_to_find)
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+void DynArray::searchPrintIndex(int data_to_find)
+{
+	if (array == nullptr)
+	{
+		std::cout << "Tablica jest pusta!"<<std::endl;
+		return;
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		if (array[i] == data_to_find)
+		{
+			std::cout << "Szukany element jest pod indexem "<< i << std::endl;
+			return;
+		}
+	}
+
+	std::cout << "W tablicy nie ma tego elementu" << std::endl;
+}
+
+int* DynArray::searchRetunPointer(int data_to_find)
+{
+	if (array == nullptr)
+	{
+		return nullptr;
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		if (array[i]==data_to_find)
+		{
+			return array+i;
+		}
+	}
+
+	return nullptr;
+}
+
+
 void DynArray::display()
 {
 	for (int i = 0; i < size; i++)
