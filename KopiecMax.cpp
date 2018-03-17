@@ -4,6 +4,11 @@
 
 void KopiecMax::add(int data_to_add)
 {
+	if (array==nullptr)
+	{
+		addEnd(data_to_add);
+		return;
+	}
 	addEnd(data_to_add);
 	fixUp(count() - 1);
 }
@@ -52,6 +57,11 @@ void KopiecMax::fixDown(int index)
 
 void KopiecMax::fixUp(int index)
 {
+	if (getParent(index)==-1)
+	{
+		return;
+	}
+
 	if (array[index]<array[getParent(index)])
 	{
 		return;
@@ -83,6 +93,10 @@ int KopiecMax::getChildRight(int index)
 
 int KopiecMax::getParent(int index)
 {
+	if (index==0)
+	{
+		return -1;
+	}
 	return (index - 1) / 2;
 }
 
@@ -102,7 +116,11 @@ int* KopiecMax::searchRetunPointer(int data_to_find)
 
 void KopiecMax::display()
 {
-	display();
+	int count=0;
+	for (int i = 1;; i++)
+	{
+		for (int x=)
+	}
 }
 
 int KopiecMax::count()
