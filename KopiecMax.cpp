@@ -116,11 +116,7 @@ int* KopiecMax::searchRetunPointer(int data_to_find)
 
 void KopiecMax::display()
 {
-	int count=0;
-	for (int i = 1;; i++)
-	{
-		for (int x=)
-	}
+	DynArray::display();
 }
 
 int KopiecMax::count()
