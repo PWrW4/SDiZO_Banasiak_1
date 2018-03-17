@@ -6,7 +6,7 @@ class KopiecMax :
 public:
 
 	void add(int data_to_add);
-	void rm(int data_to_add);
+	void rm();
 
 	void fixDown(int index);
 	void fixUp(int index);
