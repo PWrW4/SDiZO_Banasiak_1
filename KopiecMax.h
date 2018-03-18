@@ -18,9 +18,11 @@ public:
 	int searchRetunIndex(int data_to_find) override;
 	void searchPrintIndex(int data_to_find) override;
 	int * searchRetunPointer(int data_to_find) override;
+	int searchKopiec(int data_to_find, int v);
 
 	void display(std::string sp, std::string sn, int v);
 	int count() override;
+	void displayIndex(int v) override;
 	void countAndDisplay() override;
 
 

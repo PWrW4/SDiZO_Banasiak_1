@@ -21,6 +21,7 @@ public:
 	virtual void searchPrintIndex(int data_to_find);
 	virtual int * searchRetunPointer(int data_to_find);
 
+	virtual void displayIndex(int v);
 	virtual void display();
 	virtual int count();
 	virtual void countAndDisplay();

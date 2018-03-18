@@ -200,6 +200,14 @@ int* DynArray::searchRetunPointer(int data_to_find)
 	return nullptr;
 }
 
+void DynArray::displayIndex(int v)
+{
+	if (v!=-1)
+	{
+		std::cout << "Liczba o indeksie " << v << " to:" << array[v] << std::endl;
+	}	
+}
+
 
 void DynArray::display()
 {
@@ -208,6 +216,8 @@ void DynArray::display()
 		std::cout << array[i]<<std::endl;
 	}
 }
+
+
 
 int DynArray::count()
 {

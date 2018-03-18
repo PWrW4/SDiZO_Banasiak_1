@@ -101,18 +101,91 @@ int KopiecMax::getParent(int index)
 	return (index - 1) / 2;
 }
 
-int KopiecMax::searchRetunIndex(int data_to_find)
+int KopiecMax::searchKopiec(int data_to_find, int v)
 {
-	return 0;
+	if (data_to_find == array[v])
+	{
+		return v;
+	}
+
+
+
+	if (getChildLeft(v)<count())
+	{
+		if (array[getChildLeft(v)]>=data_to_find)
+		{
+			int x = searchKopiec(data_to_find, getChildLeft(v));
+
+			if (x != -1)
+			{
+				return x;
+			}
+		}
+	}
+
+	if (getChildRight(v)<count())
+	{
+		if (array[getChildRight(v)] >= data_to_find)
+		{
+			int x = searchKopiec(data_to_find, getChildRight(v));
+
+			if (x != -1)
+			{
+				return x;
+			}
+		}
+	}
+
+	return -1;
 }
 
-void KopiecMax::searchPrintIndex(int data_to_find)
+int KopiecMax::searchRetunIndex(int data_to_find)
 {
+	if (array[0]<data_to_find)
+	{
+		return -1;
+	}
+
+	int index = searchKopiec(data_to_find, 0);
+	if (index>0 && index<count())
+	{
+		return  index;
+	}
+
+	return -1;
 }
 
 int* KopiecMax::searchRetunPointer(int data_to_find)
 {
+	if (array[0]<data_to_find)
+	{
+		return nullptr;
+	}
+
+	int index = searchKopiec(data_to_find, 0);
+	if (index>0 && index<count())
+	{
+		return array + index;
+	}
+	
 	return nullptr;
+}
+
+void KopiecMax::searchPrintIndex(int data_to_find)
+{
+	if (array[0]<data_to_find)
+	{
+		std::cout << "W tablicy nie ma tego elementu" << std::endl;
+		return;
+	}
+
+	int index = searchKopiec(data_to_find, 0);
+	if (index>0 && index<count())
+	{
+		std::cout << "Szukany element "<< data_to_find<< " jest pod indexem: " << index<<std::endl;
+		return;
+	}
+	std::cout << "W tablicy nie ma tego elementu" << std::endl;
 }
 
 void KopiecMax::display(std::string sp, std::string sn, int v)
@@ -145,6 +218,11 @@ void KopiecMax::display(std::string sp, std::string sn, int v)
 		}
 }
 
+void KopiecMax::displayIndex(int v)
+{
+	DynArray::displayIndex(v);
+}
+
 int KopiecMax::count()
 {
 	return size;
@@ -152,6 +230,7 @@ int KopiecMax::count()
 
 void KopiecMax::countAndDisplay()
 {
+	DynArray::countAndDisplay();
 }
 
 KopiecMax::KopiecMax()
