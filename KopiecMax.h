@@ -19,7 +19,7 @@ public:
 	void searchPrintIndex(int data_to_find) override;
 	int * searchRetunPointer(int data_to_find) override;
 
-	void display() override;
+	void display(std::string sp, std::string sn, int v);
 	int count() override;
 	void countAndDisplay() override;
 

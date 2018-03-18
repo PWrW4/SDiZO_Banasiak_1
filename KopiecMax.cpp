@@ -1,5 +1,6 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "KopiecMax.h"
+#include <string>
 
 
 void KopiecMax::add(int data_to_add)
@@ -114,9 +115,34 @@ int* KopiecMax::searchRetunPointer(int data_to_find)
 	return nullptr;
 }
 
-void KopiecMax::display()
+void KopiecMax::display(std::string sp, std::string sn, int v)
 {
-	DynArray::display();
+	//DynArray::display();
+
+	//algorytm zaczerpnięty z http://eduinf.waw.pl/inf/alg/001_search/0113.php
+
+	std::string cr, cl, cp;
+	cr = cl = cp = "  ";
+	cr[0] = 218; cr[1] = 196;
+	cl[0] = 192; cl[1] = 196;
+	cp[0] = 179;
+	std::string s;
+
+	
+		if (v < count())
+		{
+			s = sp;
+			if (sn == cr) s[s.length() - 2] = ' ';
+			display(s + cp, cr, 2 * v + 2);
+
+			s = s.substr(0, sp.length() - 2);
+
+			std::cout << s << sn << array[v] << std::endl;
+
+			s = sp;
+			if (sn == cl) s[s.length() - 2] = ' ';
+			display(s + cp, cl, 2 * v + 1);
+		}
 }
 
 int KopiecMax::count()
