@@ -100,21 +100,75 @@ void Program::LoadData()
 		
 		int dataToAdd;
 
+		StartCounter();
 		for(int i=0;i<dataSize;i++)
 		{
 			file >> dataToAdd;
 			
 			dynArray->addEnd(dataToAdd);
-			kopiecMax->add(dataToAdd);
-			dLList->addEnd(dataToAdd);
-		}
 
+		}
+		std::cout << "Wczytanie tablicy "<<GetCounter()<<std::endl;
+
+		
 		file.close();
-		std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
 	}
 	else
 	{
-		std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
+		std::cout << "Nie udalo sie otworzyc pliku." << std::endl;
+		file.close();
+	}
+
+	file.open(dataSizeStr + ".txt", std::ios::in);
+	if (file.good() == true)
+	{
+		file >> dataSize;
+
+		int dataToAdd;
+
+
+
+		StartCounter();
+		for (int i = 0; i<dataSize; i++)
+		{
+			file >> dataToAdd;
+
+			kopiecMax->add(dataToAdd);
+
+		}
+		std::cout << "Wczytanie kopca " << GetCounter() << std::endl;
+
+
+		file.close();
+	}
+	else
+	{
+		std::cout << "Nie udalo sie otworzyc pliku." << std::endl;
+		file.close();
+	}
+
+	file.open(dataSizeStr + ".txt", std::ios::in);
+	if (file.good() == true)
+	{
+		file >> dataSize;
+
+		int dataToAdd;
+
+		StartCounter();
+		for (int i = 0; i<dataSize; i++)
+		{
+			file >> dataToAdd;
+
+			dLList->addStart(dataToAdd);
+
+		}
+		std::cout << "Wczytanie listy " << GetCounter() << std::endl;
+
+		file.close();
+	}
+	else
+	{
+		std::cout << "Nie udalo sie otworzyc pliku." << std::endl;
 		file.close();
 	}
 
@@ -184,6 +238,7 @@ void Program::DynArrayMenu()
 			break;
 		case '2':
 			std::cin >> data;
+			
 			dynArray->addEnd(data);
 			getchar();
 			getchar();
@@ -200,7 +255,7 @@ void Program::DynArrayMenu()
 			break;
 		case '5':
 			std::cin >> data;
-			dynArray->searchRetunIndex(data);
+			std::cout << "Element ktorego szukasz ma indeks: " <<dynArray->searchRetunIndex(data)<<std::endl;			
 			getchar();
 			getchar();
 			break;
@@ -266,7 +321,7 @@ void Program::KopiecMenu()
 			break;
 		case '3':
 			std::cin >> data;
-			kopiecMax->searchRetunIndex(data);
+			std::cout << "Element ktorego szukasz ma indeks: " << kopiecMax->searchRetunIndex(data)<<std::endl;
 			getchar();
 			getchar();
 			break;
@@ -310,7 +365,9 @@ void Program::ListaMenu()
 		{
 		case '1':
 			std::cin >> data;
+			StartCounter();
 			dLList->addStart(data);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
@@ -376,6 +433,25 @@ void Program::ListaMenu()
 void Program::clearConsole()
 {
 	system("cls");
+}
+
+void Program::StartCounter()
+{
+	LARGE_INTEGER li;
+	if (!QueryPerformanceFrequency(&li))
+		std::cout << "QueryPerformanceFrequency failed!\n";
+
+	PCFreq = double(li.QuadPart) / 1000.0;
+
+	QueryPerformanceCounter(&li);
+	CounterStart = li.QuadPart;
+}
+
+double Program::GetCounter()
+{
+	LARGE_INTEGER li;
+	QueryPerformanceCounter(&li);
+	return double(li.QuadPart - CounterStart) / PCFreq;
 }
 
 Program::Program()

@@ -33,6 +33,13 @@ private:
 
 	void clearConsole();
 public:
+
+	double PCFreq = 0.0;
+	__int64 CounterStart = 0;
+
+	void StartCounter();
+	double GetCounter();
+
 	Program();
 	~Program();
 };
