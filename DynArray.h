@@ -27,7 +27,7 @@ public:
 	virtual void countAndDisplay();
 
 	DynArray();
-	~DynArray();
+	 virtual ~DynArray();
 	 
  };
 
