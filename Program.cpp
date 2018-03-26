@@ -231,54 +231,71 @@ void Program::DynArrayMenu()
 		switch (ch)
 		{
 		case '1':
+			StartCounter();
 			std::cin >> data;
 			dynArray->addStart(data);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '2':
+			StartCounter();
 			std::cin >> data;
-			
 			dynArray->addEnd(data);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '3':
+			StartCounter();
 			dynArray->rmStart();
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '4':
+			StartCounter();
 			dynArray->rmEnd();
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '5':
+			StartCounter();
 			std::cin >> data;
-			std::cout << "Element ktorego szukasz ma indeks: " <<dynArray->searchRetunIndex(data)<<std::endl;			
+			std::cout << "Element ktorego szukasz ma indeks: " <<dynArray->searchRetunIndex(data)<<std::endl;		
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '6':
+			StartCounter();
 			std::cin >> data;
 			std::cin >> pos;
 			dynArray->addAtPos(data,pos);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '7':
+			StartCounter();
 			dynArray->rmAtPos(data);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '8':
+			StartCounter();
 			dynArray->display();
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '9':
+			StartCounter();
 			std::cin >> pos;
 			dynArray->displayIndex(pos);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
@@ -309,31 +326,41 @@ void Program::KopiecMenu()
 		switch (ch)
 		{
 		case '1':
+			StartCounter();
 			std::cin >> data;
 			kopiecMax->add(data);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '2':
+			StartCounter();
 			kopiecMax->rm();
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '3':
+			StartCounter();
 			std::cin >> data;
 			std::cout << "Element ktorego szukasz ma indeks: " << kopiecMax->searchRetunIndex(data)<<std::endl;
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '4':
+			StartCounter();
 			std::cout << "Kopiec sklada sie z " << kopiecMax->count() << "elementow." << std::endl;
 			kopiecMax->display("","",0);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '5':
+			StartCounter();
 			std::cin >> pos;
 			kopiecMax->displayIndex(pos);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
@@ -372,48 +399,64 @@ void Program::ListaMenu()
 			getchar();
 			break;
 		case '2':
+			StartCounter();
 			std::cin >> data;
 			dLList->addEnd(data);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '3':
+			StartCounter();
 			dLList->rmStart();
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '4':
+			StartCounter();
 			dLList->rmEnd();
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '5':
+			StartCounter();
 			std::cin >> data;
 			dLList->searchRetunIndex(data);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '6':
+			StartCounter();
 			std::cin >> data;
 			std::cin >> pos;
 			dLList->addAtPos(data,pos);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '7':
+			StartCounter();
 			std::cin >> pos;
 			dLList->rmAtPos(pos);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '8':
+			StartCounter();
 			dLList->display();
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '9':
+			StartCounter();
 			std::cin >> pos;
 			dLList->displayAtPos(pos);
+			std::cout << "czas" << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
