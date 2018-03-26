@@ -211,6 +211,8 @@ void DynArray::displayIndex(int v)
 
 void DynArray::display()
 {
+	countAndDisplay();
+	std::cout << "Elementy tablicy dynalicznej: " <<std::endl;
 	for (int i = 0; i < size; i++)
 	{
 		std::cout << array[i]<<std::endl;

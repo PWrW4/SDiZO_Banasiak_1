@@ -16,11 +16,12 @@ public:
 	void rmEnd();
 	void rmAtPos(int pos);
 
-	int searchRetunPos(int data_to_find);
+	int searchRetunIndex(int data_to_find);
 	void searchPrintPos(int data_to_find);
 	Node_DoublyLinkedList * searchRetunPointer(int data_to_find);
 
 	void display();
+	void displayAtPos(int pos);
 
 	int count();
 	void countAndShow();

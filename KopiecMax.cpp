@@ -190,7 +190,6 @@ void KopiecMax::searchPrintIndex(int data_to_find)
 
 void KopiecMax::display(std::string sp, std::string sn, int v)
 {
-	//DynArray::display();
 
 	//algorytm zaczerpnięty z http://eduinf.waw.pl/inf/alg/001_search/0113.php
 
