@@ -23,7 +23,7 @@ private:
 
 	void LoadData(int dataSize);
 
-	void AutoTestAndBenchmark();
+	void AutoTestAndBenchmark(int dataSize, int forint);
 
 	void ManualCMDs();
 

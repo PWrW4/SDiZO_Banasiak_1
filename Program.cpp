@@ -25,12 +25,18 @@ void Program::MainMenu()
 			break;
 		case '2':
 			std::cout << "Nazwa pliku do wczytania (tylko liczby calkowite): " << std::endl;
-			int datasize1;
-			std::cin >> datasize1;
-			LoadData(datasize1);
+			int datasize2;
+			std::cin >> datasize2;
+			LoadData(datasize2);
 			break;
 		case '3':
-			AutoTestAndBenchmark();
+			std::cout << "Podaj rozmiar danych do przetestowania: " << std::endl;
+			int dataSize3;
+			std::cin >> dataSize3;
+			std::cout << "Podaj liczbe powtorzen " << std::endl;
+			int forint;
+			std::cin >> forint;
+			AutoTestAndBenchmark(dataSize3, forint);
 			break;
 		case '4':
 			ManualCMDs();
@@ -173,17 +179,14 @@ void Program::LoadData(int dataSize)
 	//	getchar();
 }
 
-void Program::AutoTestAndBenchmark()
+void Program::AutoTestAndBenchmark(int dataSize, int forint)
 {
-	int b;
-	std::cin >> b;
-
-	for (int i=0; i<100; i++)
+	std::fstream file;
+	for (int i=0; i<forint; i++)
 	{
-		GenerateData(b);
-		LoadData(b);
-
-		std::fstream file;
+		GenerateData(dataSize);
+		LoadData(dataSize);
+		std::cout << i << std::endl;
 
 		file.open(("kopiectest.txt"), std::ofstream::app);
 		if (file.good() == true)
@@ -323,7 +326,6 @@ void Program::AutoTestAndBenchmark()
 			std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
 			file.close();
 		}
-		std::cout << i<<std::endl;
 	}
 
 //	std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
