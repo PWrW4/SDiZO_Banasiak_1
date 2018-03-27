@@ -18,10 +18,16 @@ void Program::MainMenu()
 		switch (ch)
 		{
 		case '1':
-			GenerateData();
+			std::cout << "Ile liczb typu int ma zawierac plik z danymi: " << std::endl;
+			int datasize;
+			std::cin >> datasize;
+			GenerateData(datasize);
 			break;
 		case '2':
-			LoadData();
+			std::cout << "Nazwa pliku do wczytania (tylko liczby calkowite): " << std::endl;
+			int datasize1;
+			std::cin >> datasize1;
+			LoadData(datasize1);
 			break;
 		case '3':
 			AutoTestAndBenchmark();
@@ -41,13 +47,9 @@ void Program::MainMenu()
 
 }
 
-void Program::GenerateData()
+void Program::GenerateData(int dataSize)
 {
-	int dataSize = 0;
 	clearConsole();
-	std::cout << "Ile liczb typu int ma zawierac plik z danymi:"<<std::endl;
-	std::cin >> dataSize;
-
 	std::ofstream file;
 
 	file.open((std::to_string(dataSize) + ".txt"), std::ios::out);
@@ -64,25 +66,20 @@ void Program::GenerateData()
 		for (int i = 0; i < dataSize; i++) file << dataToWrite[i] << std::endl;
 
 		file.close();
-		std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
 	}
 	else
 	{
-		std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
+		std::cout << "Nie udalo sie otworzyc pliku" << std::endl;
 		file.close();
 	}
-	getchar();
-	getchar();
+	//	std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
+	//	getchar();
+	//	getchar();
 }
 
-void Program::LoadData()
+void Program::LoadData(int dataSize)
 {
-	int dataSize = 0;
-	std::string dataSizeStr;
 	clearConsole();
-	std::cout << "Podaj nazwe pliku" << std::endl;
-	std::cin >> dataSizeStr;
-
 	std::ifstream file;
 
 	delete dynArray;
@@ -93,7 +90,7 @@ void Program::LoadData()
 	kopiecMax = new KopiecMax();
 	dLList = new DoublyLinkedList();
 
-	file.open(dataSizeStr + ".txt", std::ios::in);
+	file.open(std::to_string(dataSize) + ".txt", std::ios::in);
 	if (file.good() == true)
 	{
 		file >> dataSize;
@@ -119,7 +116,7 @@ void Program::LoadData()
 		file.close();
 	}
 
-	file.open(dataSizeStr + ".txt", std::ios::in);
+	file.open(std::to_string(dataSize) + ".txt", std::ios::in);
 	if (file.good() == true)
 	{
 		file >> dataSize;
@@ -147,7 +144,7 @@ void Program::LoadData()
 		file.close();
 	}
 
-	file.open(dataSizeStr + ".txt", std::ios::in);
+	file.open(std::to_string(dataSize) + ".txt", std::ios::in);
 	if (file.good() == true)
 	{
 		file >> dataSize;
@@ -171,158 +168,167 @@ void Program::LoadData()
 		std::cout << "Nie udalo sie otworzyc pliku." << std::endl;
 		file.close();
 	}
-
-	std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
-	getchar();
-	getchar();
+	//	std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
+	//	getchar();
+	//	getchar();
 }
 
 void Program::AutoTestAndBenchmark()
 {
-	std::fstream file;
+	int b;
+	std::cin >> b;
 
-	file.open(("kopiectest.txt"), std::ofstream::app);
-	if (file.good() == true)
+	for (int i=0; i<100; i++)
 	{
-		//file << "rozmiar kopca;usuniecie;dodanie;wyszukanie;" << std::endl;
-		int i = kopiecMax->count();
-		
-		file << kopiecMax->count() << ";";
+		GenerateData(b);
+		LoadData(b);
 
-		int a = rand() % (i - 1);
+		std::fstream file;
 
-		StartCounter();
-		kopiecMax->add(a);
-		file << GetCounter() << ";";
+		file.open(("kopiectest.txt"), std::ofstream::app);
+		if (file.good() == true)
+		{
+			//file << "rozmiar kopca;usuniecie;dodanie;wyszukanie;" << std::endl;
+			int i = kopiecMax->count();
 
-		StartCounter();
-		kopiecMax->rm();
-		file << GetCounter() << ";";
+			file << kopiecMax->count() << ";";
 
-		srand(time(NULL));
+			int a = rand() % (i - 1);
 
-		
+			StartCounter();
+			kopiecMax->add(a);
+			file << GetCounter() << ";";
 
-		StartCounter();
-		kopiecMax->searchRetunIndex(a);
-		file << GetCounter() << ";";
+			StartCounter();
+			kopiecMax->rm();
+			file << GetCounter() << ";";
 
-		file << std::endl;
+			srand(time(NULL));
 
-		file.close();
+
+
+			StartCounter();
+			kopiecMax->searchRetunIndex(a);
+			file << GetCounter() << ";";
+
+			file << std::endl;
+
+			file.close();
+		}
+		else
+		{
+			std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
+			file.close();
+		}
+
+		file.open(("arraytest.txt"), std::ofstream::app);
+		if (file.good() == true)
+		{
+			//file << "rozmiar tablicy;dodanie na start;usuniecie ze startu;dodanie na koncu;usuniecie z konca;dodanie na pozycji;usuniecie z pozycji;szukanie;" << std::endl;
+
+			int i = dynArray->count();
+
+
+			file << dynArray->count() << ";";
+
+			StartCounter();
+			dynArray->addStart(i);
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dynArray->rmStart();
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dynArray->addEnd(i);
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dynArray->rmEnd();
+			file << GetCounter() << ";";
+
+			srand(time(NULL));
+
+			int a = rand() % (i - 1);
+
+			StartCounter();
+			dynArray->addAtPos(i, a);
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dynArray->rmAtPos(a);
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dynArray->searchRetunIndex(a);
+			file << GetCounter() << ";";
+
+			file << std::endl;
+
+			file.close();
+		}
+		else
+		{
+			std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
+			file.close();
+		}
+
+		file.open(("listtest.txt"), std::ofstream::app);
+		if (file.good() == true)
+		{
+			int i = dLList->count();
+
+			//file << "rozmiar listy;dodanie na start;usuniecie ze startu;dodanie na koncu;usuniecie z konca;dodanie na pozycji;usuniecie z pozycji;szukanie;" << std::endl;
+
+
+			file << dLList->count() << ";";
+
+			StartCounter();
+			dLList->addStart(i);
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dLList->rmStart();
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dLList->addEnd(i);
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dLList->rmEnd();
+			file << GetCounter() << ";";
+
+			srand(time(NULL));
+
+			int a = rand() % (i - 1);
+
+			StartCounter();
+			dLList->addAtPos(i, a);
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dLList->rmAtPos(a);
+			file << GetCounter() << ";";
+
+			StartCounter();
+			dLList->searchRetunIndex(a);
+			file << GetCounter() << ";";
+
+			file << std::endl;
+			file.close();
+		}
+		else
+		{
+			std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
+			file.close();
+		}
+		std::cout << i<<std::endl;
 	}
-	else
-	{
-		std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
-		file.close();
-	}
 
-	file.open(("arraytest.txt"), std::ofstream::app);
-	if (file.good() == true)
-	{
-		//file << "rozmiar tablicy;dodanie na start;usuniecie ze startu;dodanie na koncu;usuniecie z konca;dodanie na pozycji;usuniecie z pozycji;szukanie;" << std::endl;
-
-		int i = dynArray->count();
-
-
-		file << dynArray->count() << ";";
-
-		StartCounter();
-		dynArray->addStart(i);
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dynArray->rmStart();
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dynArray->addEnd(i);
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dynArray->rmEnd();
-		file << GetCounter() << ";";
-
-		srand(time(NULL));
-
-		int a = rand() % (i - 1);
-
-		StartCounter();
-		dynArray->addAtPos(i, a);
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dynArray->rmAtPos(a);
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dynArray->searchRetunIndex(a);
-		file << GetCounter() << ";";
-
-		file << std::endl;
-
-		file.close();
-	}
-	else
-	{
-		std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
-		file.close();
-	}
-
-	file.open(("listtest.txt"), std::ofstream::app);
-	if (file.good() == true)
-	{
-		int i = dLList->count();
-
-		//file << "rozmiar listy;dodanie na start;usuniecie ze startu;dodanie na koncu;usuniecie z konca;dodanie na pozycji;usuniecie z pozycji;szukanie;" << std::endl;
-
-
-		file << dLList->count()<<";";
-		
-		StartCounter();
-		dLList->addStart(i);
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dLList->rmStart();
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dLList->addEnd(i);
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dLList->rmEnd();
-		file << GetCounter() << ";";
-
-		srand(time(NULL));
-		
-		int a = rand() % (i-1);
-
-		StartCounter();
-		dLList->addAtPos(i,a);
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dLList->rmAtPos(a);
-		file << GetCounter() << ";";
-
-		StartCounter();
-		dLList->searchRetunIndex(a);
-		file << GetCounter() << ";";
-
-		file << std::endl;
-		file.close();
-	}
-	else
-	{
-		std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
-		file.close();
-	}
-
-	std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
-	getchar();
-	getchar();
+//	std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
+//	getchar();
+//	getchar();
 }
 
 void Program::ManualCMDs()

@@ -19,9 +19,9 @@ private:
 
 	void MainMenu();
 
-	void GenerateData();
+	void GenerateData(int dataSize);
 
-	void LoadData();
+	void LoadData(int dataSize);
 
 	void AutoTestAndBenchmark();
 
