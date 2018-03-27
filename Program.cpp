@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <ctime>
 
 void Program::MainMenu()
 {
@@ -32,7 +33,6 @@ void Program::MainMenu()
 			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3'&& ch != '4')
 			{
 			std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac"<<std::endl;
-			getchar();
 			getchar();
 			}
 			break;
@@ -179,6 +179,147 @@ void Program::LoadData()
 
 void Program::AutoTestAndBenchmark()
 {
+	std::fstream file;
+
+	file.open(("kopiectest.txt"), std::ofstream::app);
+	if (file.good() == true)
+	{
+		//file << "rozmiar kopca;usuniecie;dodanie;wyszukanie;" << std::endl;
+		int i = kopiecMax->count();
+		
+		file << kopiecMax->count() << ";";
+
+		int a = rand() % (i - 1);
+
+		StartCounter();
+		kopiecMax->add(a);
+		file << GetCounter() << ";";
+
+		StartCounter();
+		kopiecMax->rm();
+		file << GetCounter() << ";";
+
+		srand(time(NULL));
+
+		
+
+		StartCounter();
+		kopiecMax->searchRetunIndex(a);
+		file << GetCounter() << ";";
+
+		file << std::endl;
+
+		file.close();
+	}
+	else
+	{
+		std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
+		file.close();
+	}
+
+	file.open(("arraytest.txt"), std::ofstream::app);
+	if (file.good() == true)
+	{
+		//file << "rozmiar tablicy;dodanie na start;usuniecie ze startu;dodanie na koncu;usuniecie z konca;dodanie na pozycji;usuniecie z pozycji;szukanie;" << std::endl;
+
+		int i = dynArray->count();
+
+
+		file << dynArray->count() << ";";
+
+		StartCounter();
+		dynArray->addStart(i);
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dynArray->rmStart();
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dynArray->addEnd(i);
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dynArray->rmEnd();
+		file << GetCounter() << ";";
+
+		srand(time(NULL));
+
+		int a = rand() % (i - 1);
+
+		StartCounter();
+		dynArray->addAtPos(i, a);
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dynArray->rmAtPos(a);
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dynArray->searchRetunIndex(a);
+		file << GetCounter() << ";";
+
+		file << std::endl;
+
+		file.close();
+	}
+	else
+	{
+		std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
+		file.close();
+	}
+
+	file.open(("listtest.txt"), std::ofstream::app);
+	if (file.good() == true)
+	{
+		int i = dLList->count();
+
+		//file << "rozmiar listy;dodanie na start;usuniecie ze startu;dodanie na koncu;usuniecie z konca;dodanie na pozycji;usuniecie z pozycji;szukanie;" << std::endl;
+
+
+		file << dLList->count()<<";";
+		
+		StartCounter();
+		dLList->addStart(i);
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dLList->rmStart();
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dLList->addEnd(i);
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dLList->rmEnd();
+		file << GetCounter() << ";";
+
+		srand(time(NULL));
+		
+		int a = rand() % (i-1);
+
+		StartCounter();
+		dLList->addAtPos(i,a);
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dLList->rmAtPos(a);
+		file << GetCounter() << ";";
+
+		StartCounter();
+		dLList->searchRetunIndex(a);
+		file << GetCounter() << ";";
+
+		file << std::endl;
+		file.close();
+	}
+	else
+	{
+		std::cout << "Nie udalo sie otworzyc pliku, nacisnij enter by powrocic do menu" << std::endl;
+		file.close();
+	}
+
 	std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
 	getchar();
 	getchar();
@@ -208,8 +349,7 @@ void Program::ManualCMDs()
 			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3')
 			{
 				std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac" << std::endl;
-				getchar();
-				getchar();
+			getchar();
 			}
 			break;
 		}
@@ -231,71 +371,71 @@ void Program::DynArrayMenu()
 		switch (ch)
 		{
 		case '1':
-			StartCounter();
 			std::cin >> data;
+			StartCounter();
 			dynArray->addStart(data);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '2':
-			StartCounter();
 			std::cin >> data;
+			StartCounter();
 			dynArray->addEnd(data);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '3':
 			StartCounter();
 			dynArray->rmStart();
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '4':
 			StartCounter();
 			dynArray->rmEnd();
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '5':
-			StartCounter();
 			std::cin >> data;
+			StartCounter();
 			std::cout << "Element ktorego szukasz ma indeks: " <<dynArray->searchRetunIndex(data)<<std::endl;		
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '6':
-			StartCounter();
 			std::cin >> data;
 			std::cin >> pos;
+			StartCounter();
 			dynArray->addAtPos(data,pos);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '7':
 			StartCounter();
 			dynArray->rmAtPos(data);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '8':
 			StartCounter();
 			dynArray->display();
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '9':
-			StartCounter();
 			std::cin >> pos;
+			StartCounter();
 			dynArray->displayIndex(pos);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
@@ -303,8 +443,7 @@ void Program::DynArrayMenu()
 			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3'&& ch != '4'&& ch != '5'&& ch != '6'&& ch != '7'&& ch != '8'&& ch != '9')
 			{
 				std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac" << std::endl;
-				getchar();
-				getchar();
+			getchar();
 			}
 			break;
 		}
@@ -326,25 +465,25 @@ void Program::KopiecMenu()
 		switch (ch)
 		{
 		case '1':
-			StartCounter();
 			std::cin >> data;
+			StartCounter();
 			kopiecMax->add(data);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '2':
 			StartCounter();
 			kopiecMax->rm();
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '3':
-			StartCounter();
 			std::cin >> data;
+			StartCounter();
 			std::cout << "Element ktorego szukasz ma indeks: " << kopiecMax->searchRetunIndex(data)<<std::endl;
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
@@ -352,15 +491,15 @@ void Program::KopiecMenu()
 			StartCounter();
 			std::cout << "Kopiec sklada sie z " << kopiecMax->count() << "elementow." << std::endl;
 			kopiecMax->display("","",0);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '5':
-			StartCounter();
 			std::cin >> pos;
+			StartCounter();
 			kopiecMax->displayIndex(pos);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
@@ -368,8 +507,7 @@ void Program::KopiecMenu()
 			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3'&& ch != '4'&& ch != '5')
 			{
 				std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac" << std::endl;
-				getchar();
-				getchar();
+			getchar();
 			}
 			break;
 		}
@@ -394,69 +532,69 @@ void Program::ListaMenu()
 			std::cin >> data;
 			StartCounter();
 			dLList->addStart(data);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '2':
-			StartCounter();
 			std::cin >> data;
+			StartCounter();
 			dLList->addEnd(data);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '3':
 			StartCounter();
 			dLList->rmStart();
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '4':
 			StartCounter();
 			dLList->rmEnd();
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '5':
-			StartCounter();
 			std::cin >> data;
+			StartCounter();
 			dLList->searchRetunIndex(data);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '6':
-			StartCounter();
 			std::cin >> data;
 			std::cin >> pos;
+			StartCounter();
 			dLList->addAtPos(data,pos);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '7':
-			StartCounter();
 			std::cin >> pos;
+			StartCounter();
 			dLList->rmAtPos(pos);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '8':
 			StartCounter();
 			dLList->display();
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case '9':
-			StartCounter();
 			std::cin >> pos;
+			StartCounter();
 			dLList->displayAtPos(pos);
-			std::cout << "czas" << GetCounter() << std::endl;;
+			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
@@ -464,8 +602,7 @@ void Program::ListaMenu()
 			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3'&& ch != '4'&& ch != '5'&& ch != '6'&& ch != '7'&& ch != '8'&& ch != '9')
 			{
 				std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac" << std::endl;
-				getchar();
-				getchar();
+			getchar();
 			}
 			break;
 		}
@@ -499,6 +636,9 @@ double Program::GetCounter()
 
 Program::Program()
 {
+	dynArray = new DynArray();
+	kopiecMax = new KopiecMax();
+	dLList = new DoublyLinkedList();
 	MainMenu();
 }
 

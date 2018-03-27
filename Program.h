@@ -13,9 +13,9 @@ private:
 	std::string ListSTR = "SDiZO - Wojciech Wojcik \n \n \nLista Dwukierunkowa:  \n1.Dodaj na poczatek \n2.Dodaj na koniec \n3.Usun z poczatku \n4.Usun z konca \n5.Szukaj elementu \n6.Dodaj w dane miejsce \n7.Usun danego miejsca \n8.Wyswietl \n9.Wyswietl element o indeksie \nAby wyjsc do glownego menu nacisnij 0 lub q lub Q\n";
 	std::string KopiecSTR = "SDiZO - Wojciech Wojcik \n \n \nKopiec typu max:  \n1.Dodaj \n2.Usun \n3.Szukaj elementu \n4.Wyswietl \n5.Wyswietl element o indeksie \nAby wyjsc do glownego menu nacisnij 0 lub q lub Q\n";
 
-	DynArray * dynArray;
-	KopiecMax * kopiecMax;
-	DoublyLinkedList * dLList;
+	DynArray * dynArray = new DynArray();
+	KopiecMax * kopiecMax = new KopiecMax();
+	DoublyLinkedList * dLList = new DoublyLinkedList();
 
 	void MainMenu();
 
