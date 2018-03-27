@@ -88,6 +88,10 @@ void Program::LoadData(int dataSize)
 	clearConsole();
 	std::ifstream file;
 
+	std::fstream loadTimes;
+	loadTimes.open("loadtimes.txt", std::ios::app);
+	//rozmiar danych;dynamiczna tablica;kopiec;lista2kierunkowa
+
 	delete dynArray;
 	delete kopiecMax;
 	delete dLList;
@@ -96,6 +100,7 @@ void Program::LoadData(int dataSize)
 	kopiecMax = new KopiecMax();
 	dLList = new DoublyLinkedList();
 
+	StartCounter();
 	file.open(std::to_string(dataSize) + ".txt", std::ios::in);
 	if (file.good() == true)
 	{
@@ -111,7 +116,7 @@ void Program::LoadData(int dataSize)
 			dynArray->addEnd(dataToAdd);
 
 		}
-		std::cout << "Wczytanie tablicy "<<GetCounter()<<std::endl;
+		loadTimes << dataSize << ";" <<GetCounter()<<";";
 
 		
 		file.close();
@@ -139,7 +144,7 @@ void Program::LoadData(int dataSize)
 			kopiecMax->add(dataToAdd);
 
 		}
-		std::cout << "Wczytanie kopca " << GetCounter() << std::endl;
+		loadTimes << GetCounter() << ";";
 
 
 		file.close();
@@ -165,7 +170,7 @@ void Program::LoadData(int dataSize)
 			dLList->addStart(dataToAdd);
 
 		}
-		std::cout << "Wczytanie listy " << GetCounter() << std::endl;
+		loadTimes << GetCounter() << ";";
 
 		file.close();
 	}
@@ -174,6 +179,8 @@ void Program::LoadData(int dataSize)
 		std::cout << "Nie udalo sie otworzyc pliku." << std::endl;
 		file.close();
 	}
+	loadTimes << std::endl;
+	loadTimes.close();
 	//	std::cout << "Nacisnij enter by powrocic do menu" << std::endl;
 	//	getchar();
 	//	getchar();
