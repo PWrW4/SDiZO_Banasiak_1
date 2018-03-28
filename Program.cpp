@@ -8,28 +8,28 @@
 
 void Program::MainMenu()
 {
-	char ch;
+	int switchInt;
 	do
 	{
 		clearConsole();
 		std::cout << MenuSTR;
-		ch = getchar();
+		std::cin >> switchInt;
 
-		switch (ch)
+		switch (switchInt)
 		{
-		case '1':
+		case 1:
 			std::cout << "Ile liczb typu int ma zawierac plik z danymi: " << std::endl;
 			int datasize;
 			std::cin >> datasize;
 			GenerateData(datasize);
 			break;
-		case '2':
+		case 2:
 			std::cout << "Nazwa pliku do wczytania (tylko liczby calkowite): " << std::endl;
 			int datasize2;
 			std::cin >> datasize2;
 			LoadData(datasize2);
 			break;
-		case '3':
+		case 3:
 			std::cout << "Podaj rozmiar danych do przetestowania: " << std::endl;
 			int dataSize3;
 			std::cin >> dataSize3;
@@ -38,18 +38,19 @@ void Program::MainMenu()
 			std::cin >> forint;
 			AutoTestAndBenchmark(dataSize3, forint);
 			break;
-		case '4':
+		case 4:
 			ManualCMDs();
 			break;
 		default:
-			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3'&& ch != '4')
+			if (switchInt != 0)
 			{
 			std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac"<<std::endl;
+			getchar();
 			getchar();
 			}
 			break;
 		}
-	} while (ch != 'q' && ch != 'Q' && ch != '0');
+	} while (switchInt != 0);
 
 }
 
@@ -342,50 +343,50 @@ void Program::AutoTestAndBenchmark(int dataSize, int forint)
 
 void Program::ManualCMDs()
 {
-	char ch;
+	int switchInt;
 	do
 	{
 		clearConsole();
 		std::cout << ManualSTR;
-		ch = getchar();
+		std::cin >> switchInt;
 
-		switch (ch)
+		switch (switchInt)
 		{
-		case '1':
+		case 1:
 			DynArrayMenu();
 			break;
-		case '2':
+		case 2:
 			KopiecMenu();
 			break;
-		case '3':
+		case 3:
 			ListaMenu();
 			break;
 		default:
-			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3')
+			if (switchInt != 0)
 			{
 				std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac" << std::endl;
 			getchar();
 			}
 			break;
 		}
-	} while (ch != 'q' && ch != 'Q' && ch != '0');
+	} while (switchInt != 0);
 }
 
 void Program::DynArrayMenu()
 {
 	int data;
 	int pos;
-	char ch;
+	int switchInt;
 	do
 	{
 		clearConsole();
 		std::cout << ArraySTR;
-		ch = getchar();
+		std::cin >> switchInt;
 
 
-		switch (ch)
+		switch (switchInt)
 		{
-		case '1':
+		case 1:
 			std::cin >> data;
 			StartCounter();
 			dynArray->addStart(data);
@@ -393,7 +394,7 @@ void Program::DynArrayMenu()
 			getchar();
 			getchar();
 			break;
-		case '2':
+		case 2:
 			std::cin >> data;
 			StartCounter();
 			dynArray->addEnd(data);
@@ -401,21 +402,21 @@ void Program::DynArrayMenu()
 			getchar();
 			getchar();
 			break;
-		case '3':
+		case 3:
 			StartCounter();
 			dynArray->rmStart();
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '4':
+		case 4:
 			StartCounter();
 			dynArray->rmEnd();
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '5':
+		case 5:
 			std::cin >> data;
 			StartCounter();
 			std::cout << "Element ktorego szukasz ma indeks: " <<dynArray->searchRetunIndex(data)<<std::endl;		
@@ -423,7 +424,7 @@ void Program::DynArrayMenu()
 			getchar();
 			getchar();
 			break;
-		case '6':
+		case 6:
 			std::cin >> data;
 			std::cin >> pos;
 			StartCounter();
@@ -432,21 +433,21 @@ void Program::DynArrayMenu()
 			getchar();
 			getchar();
 			break;
-		case '7':
+		case 7:
 			StartCounter();
 			dynArray->rmAtPos(data);
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '8':
+		case 8:
 			StartCounter();
 			dynArray->display();
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '9':
+		case 9:
 			std::cin >> pos;
 			StartCounter();
 			dynArray->displayIndex(pos);
@@ -455,31 +456,32 @@ void Program::DynArrayMenu()
 			getchar();
 			break;
 		default:
-			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3'&& ch != '4'&& ch != '5'&& ch != '6'&& ch != '7'&& ch != '8'&& ch != '9')
+			if (switchInt!=0)
 			{
 				std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac" << std::endl;
+			getchar();
 			getchar();
 			}
 			break;
 		}
-	} while (ch != 'q' && ch != 'Q' && ch != '0');
+	} while (switchInt != 0);
 }
 
 void Program::KopiecMenu()
 {
 	int data;
 	int pos;
-	char ch;
+	int switchInt;
 	do
 	{
 		clearConsole();
 		std::cout << KopiecSTR;
-		ch = getchar();
+		std::cin >> switchInt;;
 
 
-		switch (ch)
+		switch (switchInt)
 		{
-		case '1':
+		case 1:
 			std::cin >> data;
 			StartCounter();
 			kopiecMax->add(data);
@@ -487,14 +489,14 @@ void Program::KopiecMenu()
 			getchar();
 			getchar();
 			break;
-		case '2':
+		case 2:
 			StartCounter();
 			kopiecMax->rm();
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '3':
+		case 3:
 			std::cin >> data;
 			StartCounter();
 			std::cout << "Element ktorego szukasz ma indeks: " << kopiecMax->searchRetunIndex(data)<<std::endl;
@@ -502,15 +504,15 @@ void Program::KopiecMenu()
 			getchar();
 			getchar();
 			break;
-		case '4':
+		case 4:
 			StartCounter();
-			std::cout << "Kopiec sklada sie z " << kopiecMax->count() << "elementow." << std::endl;
+			std::cout << "Kopiec sklada sie z " << kopiecMax->count() << " elementow." << std::endl<<std::endl;
 			kopiecMax->display("","",0);
-			std::cout << "czas " << GetCounter() << std::endl;;
+			std::cout <<std::endl<< "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '5':
+		case 5:
 			std::cin >> pos;
 			StartCounter();
 			kopiecMax->displayIndex(pos);
@@ -519,31 +521,32 @@ void Program::KopiecMenu()
 			getchar();
 			break;
 		default:
-			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3'&& ch != '4'&& ch != '5')
+			if (switchInt != 0)
 			{
 				std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac" << std::endl;
+			getchar();
 			getchar();
 			}
 			break;
 		}
-	} while (ch != 'q' && ch != 'Q' && ch != '0');
+	} while (switchInt != 0);
 }
 
 void Program::ListaMenu()
 {
 	int data;
 	int pos;
-	char ch;
+	int switchInt;
 	do
 	{
 		clearConsole();
 		std::cout << ListSTR;
-		ch = getchar();
+		std::cin >> switchInt;
 
 
-		switch (ch)
+		switch (switchInt)
 		{
-		case '1':
+		case 1:
 			std::cin >> data;
 			StartCounter();
 			dLList->addStart(data);
@@ -551,7 +554,7 @@ void Program::ListaMenu()
 			getchar();
 			getchar();
 			break;
-		case '2':
+		case 2:
 			std::cin >> data;
 			StartCounter();
 			dLList->addEnd(data);
@@ -559,29 +562,29 @@ void Program::ListaMenu()
 			getchar();
 			getchar();
 			break;
-		case '3':
+		case 3:
 			StartCounter();
 			dLList->rmStart();
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '4':
+		case 4:
 			StartCounter();
 			dLList->rmEnd();
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '5':
+		case 5:
 			std::cin >> data;
 			StartCounter();
-			dLList->searchRetunIndex(data);
+			std::cout << "Szukany element ma indeks " <<dLList->searchRetunIndex(data) << std::endl;
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '6':
+		case 6:
 			std::cin >> data;
 			std::cin >> pos;
 			StartCounter();
@@ -590,7 +593,7 @@ void Program::ListaMenu()
 			getchar();
 			getchar();
 			break;
-		case '7':
+		case 7:
 			std::cin >> pos;
 			StartCounter();
 			dLList->rmAtPos(pos);
@@ -598,14 +601,14 @@ void Program::ListaMenu()
 			getchar();
 			getchar();
 			break;
-		case '8':
+		case 8:
 			StartCounter();
 			dLList->display();
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
-		case '9':
+		case 9:
 			std::cin >> pos;
 			StartCounter();
 			dLList->displayAtPos(pos);
@@ -614,14 +617,15 @@ void Program::ListaMenu()
 			getchar();
 			break;
 		default:
-			if (ch != 'q' && ch != 'Q' && ch != '0' && ch != '1' && ch != '2'&& ch != '3'&& ch != '4'&& ch != '5'&& ch != '6'&& ch != '7'&& ch != '8'&& ch != '9')
+			if (switchInt!=0)
 			{
 				std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac" << std::endl;
+			getchar();
 			getchar();
 			}
 			break;
 		}
-	} while (ch != 'q' && ch != 'Q' && ch != '0');
+	} while (switchInt != 0);
 }
 
 

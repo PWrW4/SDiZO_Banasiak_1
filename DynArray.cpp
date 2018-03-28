@@ -76,6 +76,13 @@ void DynArray::rmStart()
 
 	size--;
 
+	if (size == 0)
+	{
+		delete[] array;
+		array = nullptr;
+		return;
+	}
+
 	int * tmp = new int[size];
 	memcpy(tmp, array + 1, size * sizeof(int));
 	delete[] array;
@@ -91,10 +98,19 @@ void DynArray::rmEnd()
 
 	size--;
 
+	if (size == 0)
+	{
+		delete[] array;
+		array = nullptr;
+		return;
+	}
+
 	int * tmp = new int[size];
 	memcpy(tmp, array, size * sizeof(int));
 	delete[] array;
 	array = tmp;
+
+
 }
 
 void DynArray::rmAtPos(int pos)
@@ -127,6 +143,12 @@ void DynArray::rmAtPos(int pos)
 
 void DynArray::swapByPos(int left, int right)
 {
+	if (size == 0)
+	{
+		std::cout << "Struktura pusta"<<std::endl;
+		return;
+	}
+
 	if (left>size - 1 || right>size - 1)
 	{
 		std::cout << "Error1 while swaping." << std::endl;
@@ -204,7 +226,7 @@ void DynArray::displayIndex(int v)
 {
 	if (v!=-1)
 	{
-		std::cout << "Liczba o indeksie " << v << " to:" << array[v] << std::endl;
+		std::cout << "Liczba o indeksie " << v << " to: " << array[v] << std::endl;
 	}	
 }
 

@@ -16,6 +16,12 @@ void KopiecMax::add(int data_to_add)
 
 void KopiecMax::rm()
 {
+	if (size == 0)
+	{
+		std::cout << "Struktura pusta" << std::endl;
+		return;
+	}
+
 	swapByPos(0, count() - 1);
 	rmEnd();
 	fixDown(0);
@@ -28,15 +34,10 @@ void KopiecMax::fixDown(int index)
 		return;
 	}
 
-	if (array[index]>array[getChildLeft(index)] && getChildRight(index)==-1)
+	if (array[index]<array[getChildLeft(index)] && getChildRight(index)==-1)
 	{
 		swapByPos(index, getChildLeft(index));
 		return;
-	}
-
-	if (true)
-	{
-		
 	}
 
 	if (array[index]>array[getChildLeft(index)] && array[index]>array[getChildRight(index)])
@@ -107,9 +108,7 @@ int KopiecMax::searchKopiec(int data_to_find, int v)
 	{
 		return v;
 	}
-
-
-
+	
 	if (getChildLeft(v)<count())
 	{
 		if (array[getChildLeft(v)]>=data_to_find)
@@ -147,7 +146,7 @@ int KopiecMax::searchRetunIndex(int data_to_find)
 	}
 
 	int index = searchKopiec(data_to_find, 0);
-	if (index>0 && index<count())
+	if (index>=0 && index<count())
 	{
 		return  index;
 	}
