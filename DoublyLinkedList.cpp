@@ -85,8 +85,19 @@ void DoublyLinkedList::rmStart()
 		return;
 	}
 
+	if (count() == 1)
+	{
+		head_list = nullptr;
+		return;
+	}
+
 	head_list = head_list->next;
 	delete head_list->prev;
+
+	if (count()==0)
+	{
+		head_list = nullptr;
+	}
 }
 
 void DoublyLinkedList::rmEnd()
@@ -94,6 +105,12 @@ void DoublyLinkedList::rmEnd()
 	//jeśli lista pusta to nic nie rób
 	if (head_list == nullptr)
 	{
+		return;
+	}
+
+	if (count() == 1)
+	{
+		head_list = nullptr;
 		return;
 	}
 
@@ -107,6 +124,7 @@ void DoublyLinkedList::rmEnd()
 
 	tmp->prev->next = nullptr;
 	delete tmp;
+
 }
 
 
@@ -122,6 +140,13 @@ void DoublyLinkedList::rmAtPos(int pos)
 	if (pos <= 0)
 	{
 		rmStart();
+		return;
+	}
+
+	//jesli zostal 1 element no to go usuwamy
+	if (count() == 1)
+	{
+		head_list = nullptr;
 		return;
 	}
 
