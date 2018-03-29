@@ -366,6 +366,7 @@ void Program::ManualCMDs()
 			{
 				std::cout << "Nieznana komenda :( , nacisnij enter by kontynulowac" << std::endl;
 			getchar();
+			getchar();
 			}
 			break;
 		}
@@ -419,13 +420,15 @@ void Program::DynArrayMenu()
 		case 5:
 			std::cin >> data;
 			StartCounter();
-			std::cout << "Element ktorego szukasz ma indeks: " <<dynArray->searchRetunIndex(data)<<std::endl;		
+			std::cout << "Element ktorego szukasz ma indeks (-1 oznacza nieznalezienie elementu): " <<dynArray->searchRetunIndex(data)<<std::endl;		
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case 6:
+			std::cout << "Liczba do dodania:"<<std::endl;
 			std::cin >> data;
+			std::cout << "Miejsce, gdzie chcesz wstawic element (indeks, pierwszy element ma indeks 0):" << std::endl;
 			std::cin >> pos;
 			StartCounter();
 			dynArray->addAtPos(data,pos);
@@ -434,8 +437,10 @@ void Program::DynArrayMenu()
 			getchar();
 			break;
 		case 7:
+			std::cout << "Miejsce, z ktorego chcesz usunac element (indeks, pierwszy element ma indeks 0):" << std::endl;
+			std::cin >> pos;
 			StartCounter();
-			dynArray->rmAtPos(data);
+			dynArray->rmAtPos(pos);
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
@@ -448,6 +453,7 @@ void Program::DynArrayMenu()
 			getchar();
 			break;
 		case 9:
+			std::cout << "Miejsce, z ktorego chcesz wyswietlic element (indeks, pierwszy element ma indeks 0):" << std::endl;
 			std::cin >> pos;
 			StartCounter();
 			dynArray->displayIndex(pos);
@@ -499,7 +505,7 @@ void Program::KopiecMenu()
 		case 3:
 			std::cin >> data;
 			StartCounter();
-			std::cout << "Element ktorego szukasz ma indeks: " << kopiecMax->searchRetunIndex(data)<<std::endl;
+			std::cout << "Element ktorego szukasz ma indeks (-1 oznacza nieznalezienie elementu): " << kopiecMax->searchRetunIndex(data)<<std::endl;
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
@@ -579,13 +585,15 @@ void Program::ListaMenu()
 		case 5:
 			std::cin >> data;
 			StartCounter();
-			std::cout << "Szukany element ma indeks " <<dLList->searchRetunIndex(data) << std::endl;
+			std::cout << "Szukany element ma indeks (-1 oznacza nieznalezienie elementu): " <<dLList->searchRetunIndex(data) << std::endl;
 			std::cout << "czas " << GetCounter() << std::endl;;
 			getchar();
 			getchar();
 			break;
 		case 6:
+			std::cout << "Element ktory chcesz dodac:" << std::endl;
 			std::cin >> data;
+			std::cout << "Miejsce, gdzie chcesz wstawic element (indeks, pierwszy element ma indeks 0):" << std::endl;
 			std::cin >> pos;
 			StartCounter();
 			dLList->addAtPos(data,pos);
@@ -594,6 +602,7 @@ void Program::ListaMenu()
 			getchar();
 			break;
 		case 7:
+			std::cout << "Miejsce, z ktorego chcesz usunac element (indeks, pierwszy element ma indeks 0):" << std::endl;
 			std::cin >> pos;
 			StartCounter();
 			dLList->rmAtPos(pos);
@@ -609,6 +618,7 @@ void Program::ListaMenu()
 			getchar();
 			break;
 		case 9:
+			std::cout << "Miejsce, z ktorego chcesz wyswietlic element (indeks, pierwszy element ma indeks 0):" << std::endl;
 			std::cin >> pos;
 			StartCounter();
 			dLList->displayAtPos(pos);

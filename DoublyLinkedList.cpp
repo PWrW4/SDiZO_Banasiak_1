@@ -199,7 +199,7 @@ int DoublyLinkedList::searchRetunIndex(int data_to_find)
 
 
 
-	return 999999999;
+	return -1;
 }
 
 void DoublyLinkedList::searchPrintPos(int data_to_find)
@@ -285,6 +285,11 @@ void DoublyLinkedList::displayAtPos(int pos)
 		std::cout << "Lista jest pusta" << std::endl;
 	}
 
+	if (pos>=count() || pos<0)
+	{
+		std::cout << "Niewlasciwy indeks" << std::endl;
+		return;
+	}
 
 	int i = 0;
 	Node_DoublyLinkedList * tmp = head_list;
@@ -305,6 +310,11 @@ void DoublyLinkedList::displayAtPos(int pos)
 		}
 		tmp = tmp->next;
 		i++;
+	}
+
+	if (i == pos)
+	{
+		std::cout << "Liczba na szukanej pozycji to " << tmp->data << std::endl;
 	}
 }
 

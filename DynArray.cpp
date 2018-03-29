@@ -224,10 +224,15 @@ int* DynArray::searchRetunPointer(int data_to_find)
 
 void DynArray::displayIndex(int v)
 {
-	if (v!=-1)
+	if (v >= count() || v<0)
 	{
-		std::cout << "Liczba o indeksie " << v << " to: " << array[v] << std::endl;
-	}	
+		std::cout << "Niewlasciwy indeks" << std::endl;
+		return;
+	}
+
+
+	std::cout << "Liczba o indeksie " << v << " to: " << array[v] << std::endl;
+	
 }
 
 
